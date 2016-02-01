@@ -8,3 +8,13 @@ C:\Users\Oplkill\documents\visual studio 2015\Projects\DotaLocalizerManager\Dota
 C:\Users\Oplkill\documents\visual studio 2015\Projects\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csproj.GenerateResource.Cache
 C:\Users\Oplkill\documents\visual studio 2015\Projects\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.exe
 C:\Users\Oplkill\documents\visual studio 2015\Projects\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.pdb
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\DotaLocalizerManager.exe.config
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.exe
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.pdb
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\DotaLocalizerManager.exe
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\DotaLocalizerManager.pdb
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csprojResolveAssemblyReference.cache
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.Form1.resources
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.OpenFilesDialogForm.resources
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.Properties.Resources.resources
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csproj.GenerateResource.Cache

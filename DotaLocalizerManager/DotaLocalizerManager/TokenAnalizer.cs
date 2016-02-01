@@ -2,7 +2,7 @@
 
 namespace DotaLocalizerManager
 {
-    public class TokenAnalizer
+    public static class TokenAnalizer
     {
         public static List<Token> AnalizeString(string code)
         {

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using DotaLocalizerManager.Properties;
 
 namespace DotaLocalizerManager
 {
     public partial class OpenFilesDialogForm : Form
     {
         private List<string> paths;
+        private List<bool> lockedList; 
         private bool canceled = false;
 
         public OpenFilesDialogForm()
         {
             InitializeComponent();
             paths = new List<string>();
+            lockedList = new List<bool>();
         }
 
         //Okey
@@ -46,10 +49,11 @@ namespace DotaLocalizerManager
 
             if (paths.Contains(path))
             {
-                MessageBox.Show("This file already in list!");
+                MessageBox.Show(Resources.ErrorFileInListExist);
                 return;
             }
             paths.Add(path);
+            lockedList.Add(false);
             listBox1.Items.Add(path);
         }
 
@@ -58,12 +62,26 @@ namespace DotaLocalizerManager
         /// </summary>
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            if(listBox1.SelectedIndex == -1)
+            int itemId = listBox1.SelectedIndex;
+            if (itemId == -1)
                 return;
 
-            int itemId = listBox1.SelectedIndex;
             paths.RemoveAt(itemId);
+            lockedList.RemoveAt(itemId);
             listBox1.Items.RemoveAt(itemId);
+        }
+
+        /// <summary>
+        /// Button lock
+        /// </summary>
+        private void buttonLock_Click(object sender, EventArgs e)
+        {
+            int itemId = listBox1.SelectedIndex;
+            if (itemId == -1)
+                return;
+
+            lockedList[itemId] = !lockedList[itemId];
+            listBox1.Items[itemId] = ((lockedList[itemId]) ? "[locked] - " : "") + paths[itemId];
         }
 
         private void OpenFilesDialogForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -85,9 +103,9 @@ namespace DotaLocalizerManager
             if (dialog.canceled)
                 return null;
 
-            foreach (var path in dialog.paths)
+            for (int i = 0; i < dialog.paths.Count; i++)
             {
-                fileOpener.LoadFile(path);
+                fileOpener.LoadFile(dialog.paths[i], dialog.lockedList[i]);
             }
 
             dialog.Close();

@@ -120,4 +120,10 @@
   <data name="ErrorKeyAreNotFree" xml:space="preserve">
     <value>This key are not free!</value>
   </data>
+  <data name="ErrorEmptyKey" xml:space="preserve">
+    <value>Key cant be empty!</value>
+  </data>
+  <data name="ErrorFileInListExist" xml:space="preserve">
+    <value>This file already in list!</value>
+  </data>
 </root>

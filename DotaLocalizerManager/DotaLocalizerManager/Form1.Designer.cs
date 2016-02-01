@@ -48,6 +48,8 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -148,6 +150,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.buttonRemove);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonAdd);
             this.splitContainer1.Panel1.Controls.Add(this.progressBar1);
             this.splitContainer1.Panel1.Controls.Add(this.buttonSwitchLangs);
             this.splitContainer1.Panel1.Controls.Add(this.comboBoxFile2);
@@ -251,6 +255,28 @@
             this.Column3.Name = "Column3";
             this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonAdd.Location = new System.Drawing.Point(619, 0);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(30, 25);
+            this.buttonAdd.TabIndex = 9;
+            this.buttonAdd.Text = "+";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonRemove.Location = new System.Drawing.Point(587, 0);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(32, 25);
+            this.buttonRemove.TabIndex = 6;
+            this.buttonRemove.Text = "-";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,6 +323,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }
 

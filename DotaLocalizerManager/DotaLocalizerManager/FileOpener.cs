@@ -7,11 +7,11 @@ namespace DotaLocalizerManager
     {
         public List<FileClass> Files = new List<FileClass>();
 
-        public void LoadFile(string path)
+        public void LoadFile(string path, bool locked)
         {
             string fileText = System.IO.File.ReadAllText(path);
 
-            FileClass fileClass = new FileClass {FilePathName = path};
+            FileClass fileClass = new FileClass {FilePathName = path, Locked = locked};
 
             var tokens = TokenAnalizer.AnalizeString(fileText);
 
@@ -42,7 +42,8 @@ namespace DotaLocalizerManager
         {
             foreach (var file in Files)
             {
-                System.IO.File.WriteAllText(file.FilePathName, generateText(file));
+                if(!file.Locked)
+                    System.IO.File.WriteAllText(file.FilePathName, generateText(file));
             }
         }
 

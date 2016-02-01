@@ -61,6 +61,24 @@ namespace DotaLocalizerManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Key cant be empty!.
+        /// </summary>
+        internal static string ErrorEmptyKey {
+            get {
+                return ResourceManager.GetString("ErrorEmptyKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на This file already in list!.
+        /// </summary>
+        internal static string ErrorFileInListExist {
+            get {
+                return ResourceManager.GetString("ErrorFileInListExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на This key are not free!.
         /// </summary>
         internal static string ErrorKeyAreNotFree {

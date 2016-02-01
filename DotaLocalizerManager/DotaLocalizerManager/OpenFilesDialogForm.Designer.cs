@@ -34,11 +34,12 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
+            this.buttonLock = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(470, 125);
+            this.button3.Location = new System.Drawing.Point(419, 126);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(88, 37);
             this.button3.TabIndex = 3;
@@ -48,7 +49,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(377, 125);
+            this.button4.Location = new System.Drawing.Point(326, 126);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 37);
             this.button4.TabIndex = 3;
@@ -72,7 +73,7 @@
             // 
             this.buttonAdd.Location = new System.Drawing.Point(470, 12);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(88, 49);
+            this.buttonAdd.Size = new System.Drawing.Size(37, 30);
             this.buttonAdd.TabIndex = 5;
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -80,19 +81,30 @@
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(470, 67);
+            this.buttonRemove.Location = new System.Drawing.Point(470, 78);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(88, 40);
+            this.buttonRemove.Size = new System.Drawing.Size(37, 29);
             this.buttonRemove.TabIndex = 6;
             this.buttonRemove.Text = "-";
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
+            // buttonLock
+            // 
+            this.buttonLock.Location = new System.Drawing.Point(470, 48);
+            this.buttonLock.Name = "buttonLock";
+            this.buttonLock.Size = new System.Drawing.Size(37, 24);
+            this.buttonLock.TabIndex = 7;
+            this.buttonLock.Text = "lock";
+            this.buttonLock.UseVisualStyleBackColor = true;
+            this.buttonLock.Click += new System.EventHandler(this.buttonLock_Click);
+            // 
             // OpenFilesDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 175);
+            this.ClientSize = new System.Drawing.Size(519, 175);
+            this.Controls.Add(this.buttonLock);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.listBox1);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Button buttonLock;
     }
 }

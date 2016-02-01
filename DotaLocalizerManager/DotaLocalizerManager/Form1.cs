@@ -75,6 +75,9 @@ namespace DotaLocalizerManager
         /// </summary>
         private void buttonSwitchLangs_Click(object sender, EventArgs e)
         {
+            if (editing)
+                return;
+
             if (comboBoxFile1.Items.Count == 0 || comboBoxFile2.Items.Count == 0 || 
                 comboBoxFile1.SelectedIndex == -1 || comboBoxFile2.SelectedIndex == -1)
                 return;
@@ -141,7 +144,51 @@ namespace DotaLocalizerManager
             updateTable();
         }
 
-#endregion
+        /// <summary>
+        /// Button Add
+        /// </summary>
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if (db == null)
+                return;
+
+            string tempKey = DateTime.Now.ToLongTimeString();
+            if (db.FileOpener.Files[0].LocalizeString.ContainsKey(tempKey))
+                return;
+            foreach (var file in db.FileOpener.Files)
+            {
+                file.LocalizeString.Add(tempKey, "");
+            }
+            var dtGrigTmp = new DataGridViewRow();
+            dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
+            dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
+            dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
+            dtGrigTmp.Cells[0].Value = tempKey;
+            dtGrigTmp.Cells[1].Value = "";
+            dtGrigTmp.Cells[2].Value = "";
+            dataGridView1.Rows.Add(dtGrigTmp);
+        }
+
+        /// <summary>
+        /// Button remove
+        /// </summary>
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count == 0)
+                return;
+
+            int collId = dataGridView1.SelectedCells[0].ColumnIndex;
+            int rowId = dataGridView1.SelectedCells[0].RowIndex;
+
+            string key = dataGridView1.Rows[rowId].Cells[collId].Value.ToString();
+            foreach (var file in db.FileOpener.Files)
+            {
+                file.LocalizeString.Remove(key);
+            }
+            dataGridView1.Rows.RemoveAt(rowId);
+        }
+
+        #endregion
 
         private bool exit()
         {
@@ -189,10 +236,9 @@ namespace DotaLocalizerManager
 
         private void loadTable()
         {
-            var dtGrigTmp = new DataGridViewRow();
             foreach (var pare in db.FileOpener.Files[firstFile].LocalizeString)
             {
-                dtGrigTmp = new DataGridViewRow();
+                var dtGrigTmp = new DataGridViewRow();
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
@@ -216,11 +262,13 @@ namespace DotaLocalizerManager
         }
 
         private string lastKey;
+        private bool editing;
         /// <summary>
         /// Таблица. Редактирование ячейки начато
         /// </summary>
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+            editing = true;
             if (e.ColumnIndex != 0)
                 return;
 
@@ -232,8 +280,17 @@ namespace DotaLocalizerManager
         /// </summary>
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            if (loading || !editing)
+                return;
+
             if (e.ColumnIndex == 0)
             { // редактирование ключа
+                if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = lastKey;
+                    MessageBox.Show(Resources.ErrorEmptyKey);
+                    return;
+                }
                 string newKey = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                 if (lastKey == newKey)
                     return;
@@ -262,7 +319,7 @@ namespace DotaLocalizerManager
 
             // редактирование значения
             string key = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            string value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null) ? "" : dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
             int fileId = (e.ColumnIndex == firstFile) ? firstFile : secondFile;
 
             if (db.FileOpener.Files[fileId].LocalizeString[key] == value)
@@ -270,11 +327,15 @@ namespace DotaLocalizerManager
 
             db.FileOpener.Files[fileId].LocalizeString[key] = value;
             db.Edited = true;
+
+            editing = false;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = exit();
         }
+
+        
     }
 }
