@@ -13,8 +13,13 @@ C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocali
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.pdb
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\DotaLocalizerManager.exe
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\DotaLocalizerManager.pdb
-C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csprojResolveAssemblyReference.cache
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.Form1.resources
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.OpenFilesDialogForm.resources
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.Properties.Resources.resources
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csproj.GenerateResource.Cache
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\obj\Debug\DotaLocalizerManager.csprojResolveAssemblyReference.cache
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\Sprache.dll
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\Sprache.pdb
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\Sprache.xml
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\KV3Lib.dll
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\DotaLocalizerManager\bin\Debug\KV3Lib.pdb

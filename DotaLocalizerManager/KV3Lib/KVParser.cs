@@ -1,23 +1,56 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace DotaLocalizerManager
+namespace KV3Lib
 {
-    public static class TokenAnalizer
+    public static class KVParser
     {
-        public static List<Token> AnalizeString(string code)
+        public static List<KeyValue> Parse(string code)
         {
-            List<Token> tokens = new List<Token>();
-
             int n = 0;
-            while (code.Length > n)
+            return ParseIt(code, ref n, null);
+        }
+
+        private static List<KeyValue> ParseIt(string code, ref int n, KeyValue parent)
+        {
+            List<KeyValue> keys = new List<KeyValue>();
+
+            Token tok = new Token() {Tok = Toks.nil};
+            while (tok.Tok != Toks.eof)
             {
-                var tok = GetToken(code, ref n);
-                tokens.Add(tok);
-                if(tok == null || tok.Tok == Toks.eof)
+                tok = GetToken(code, ref n);
+                if(tok.Tok == Toks.eof)
                     break;
+                if (tok.Tok == Toks.closeAngleBracket)
+                {
+                    return keys.Count > 0 ? keys : null;
+                }
+                string key = tok.Value;
+                tok = GetToken(code, ref n);
+                string value = tok.Value;
+                KeyValue KValue = new KeyValue()
+                {
+                    Key = key,
+                    Parent = parent,
+                    Value = value,
+                };
+                if (tok.Tok == Toks.openAngleBracket)
+                {
+                    KValue.Type = KvType.ParentKey;
+                    KValue.Children = ParseIt(code, ref n, KValue);
+                }
+                else
+                {
+                    KValue.Type = KvType.KeyValue;
+                }
+                keys.Add(KValue);
             }
 
-            return tokens;
+            return keys;
         }
 
         private static bool isSpace(char c)
@@ -30,31 +63,13 @@ namespace DotaLocalizerManager
             return false;
         }
 
-        private static Token isReserved(string text)
-        {
-            string text2 = text.ToLower();
-            switch (text2)
-            {
-                case "lang":
-                    return new Token() {Tok = Toks.lang};
-
-                case "language":
-                    return new Token() {Tok = Toks.language};
-
-                case "tokens":
-                    return new Token() {Tok = Toks.tokens};
-            }
-
-            return new Token() {Tok = Toks.text, Value = text};
-        }
-
         private static Token GetToken(string code, ref int n)
         {
             ToStart: //goto!
 
             //eof
             if (n >= code.Length)
-                return new Token() {Tok = Toks.eof};
+                return new Token() { Tok = Toks.eof };
             //------------------
 
             //Spaces
@@ -86,11 +101,11 @@ namespace DotaLocalizerManager
             {
                 case '{':
                     n++;
-                    return new Token() {Tok = Toks.openAngleBracket};
+                    return new Token() { Tok = Toks.openAngleBracket };
 
                 case '}':
                     n++;
-                    return new Token() {Tok = Toks.closeAngleBracket};
+                    return new Token() { Tok = Toks.closeAngleBracket };
             }
             //------------------
 
@@ -110,27 +125,25 @@ namespace DotaLocalizerManager
                     n++;
                 }
                 n++;
-                return isReserved(text);
+                return new Token() { Tok = Toks.text, Value = text };
             }
             //------------------
 
             return null; //todo добавить исключение
         }
-    }
 
-    public class Token
-    {
-        public Toks Tok;
-        public string Value;
-    }
+        private class Token
+        {
+            public Toks Tok;
+            public string Value;
+        }
 
-    public enum Toks
-    {
-        openAngleBracket, closeAngleBracket,
-        language,
-        tokens,
-        lang,
-        text, 
-        eof,
+        private enum Toks
+        {
+            nil,
+            openAngleBracket, closeAngleBracket,
+            text,
+            eof,
+        }
     }
 }

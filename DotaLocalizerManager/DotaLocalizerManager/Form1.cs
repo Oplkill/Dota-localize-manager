@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using DotaLocalizerManager.Properties;
+using KV3Lib;
 
 namespace DotaLocalizerManager
 {
@@ -153,11 +154,17 @@ namespace DotaLocalizerManager
                 return;
 
             string tempKey = DateTime.Now.ToLongTimeString();
-            if (db.FileOpener.Files[0].LocalizeString.ContainsKey(tempKey))
+            if (db.FileOpener.Files[0].LocalizationKeys.HasKeyInChildren(tempKey))
                 return;
+
             foreach (var file in db.FileOpener.Files)
             {
-                file.LocalizeString.Add(tempKey, "");
+                file.LocalizationKeys.Children.Add(new KeyValue()
+                {
+                    Key = tempKey,
+                    Value = "",
+                    Parent = file.LocalizationKeys,
+                });
             }
             var dtGrigTmp = new DataGridViewRow();
             dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
@@ -167,6 +174,7 @@ namespace DotaLocalizerManager
             dtGrigTmp.Cells[1].Value = "";
             dtGrigTmp.Cells[2].Value = "";
             dataGridView1.Rows.Add(dtGrigTmp);
+            db.Edited = true;
         }
 
         /// <summary>
@@ -180,12 +188,14 @@ namespace DotaLocalizerManager
             int collId = dataGridView1.SelectedCells[0].ColumnIndex;
             int rowId = dataGridView1.SelectedCells[0].RowIndex;
 
-            string key = dataGridView1.Rows[rowId].Cells[collId].Value.ToString();
+            string key = dataGridView1.Rows[rowId].Cells[0].Value.ToString();
             foreach (var file in db.FileOpener.Files)
             {
-                file.LocalizeString.Remove(key);
+                int i = file.LocalizationKeys.FindChildrenId(key);
+                file.LocalizationKeys.Children.RemoveAt(i);
             }
             dataGridView1.Rows.RemoveAt(rowId);
+            db.Edited = true;
         }
 
         #endregion
@@ -236,15 +246,15 @@ namespace DotaLocalizerManager
 
         private void loadTable()
         {
-            foreach (var pare in db.FileOpener.Files[firstFile].LocalizeString)
+            foreach (var kv in db.FileOpener.Files[firstFile].LocalizationKeys.Children)
             {
                 var dtGrigTmp = new DataGridViewRow();
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
                 dtGrigTmp.Cells.Add(new DataGridViewTextBoxCell());
-                dtGrigTmp.Cells[0].Value = pare.Key;
-                dtGrigTmp.Cells[1].Value = pare.Value;
-                dtGrigTmp.Cells[2].Value = db.FileOpener.Files[secondFile].LocalizeString[pare.Key];
+                dtGrigTmp.Cells[0].Value = kv.Key;
+                dtGrigTmp.Cells[1].Value = kv.Value;
+                dtGrigTmp.Cells[2].Value = db.FileOpener.Files[secondFile].LocalizationKeys.FindChildren(kv.Key).Value;
                 dataGridView1.Rows.Add(dtGrigTmp);
             }
         }
@@ -255,9 +265,9 @@ namespace DotaLocalizerManager
             {
                 string key = dataGridView1.Rows[i].Cells[0].Value.ToString();
                 dataGridView1.Rows[i].Cells[1].Value =
-                    db.FileOpener.Files[firstFile].LocalizeString[key];
+                    db.FileOpener.Files[firstFile].LocalizationKeys.FindChildren(key).Value;
                 dataGridView1.Rows[i].Cells[2].Value =
-                    db.FileOpener.Files[secondFile].LocalizeString[key];
+                    db.FileOpener.Files[secondFile].LocalizationKeys.FindChildren(key).Value;
             }
         }
 
@@ -295,7 +305,7 @@ namespace DotaLocalizerManager
                 if (lastKey == newKey)
                     return;
 
-                if (db.FileOpener.Files.First().LocalizeString.ContainsKey(newKey))
+                if (db.FileOpener.Files.First().LocalizationKeys.HasKeyInChildren(newKey))
                 {
                     MessageBox.Show(Resources.ErrorKeyAreNotFree);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = lastKey;
@@ -309,8 +319,7 @@ namespace DotaLocalizerManager
                 }
                 foreach (var file in db.FileOpener.Files)
                 {
-                    file.LocalizeString.Add(newKey, file.LocalizeString[lastKey]);
-                    file.LocalizeString.Remove(lastKey);
+                    file.LocalizationKeys.FindChildren(lastKey).Key = newKey;
                 }
 
                 db.Edited = true;
@@ -322,11 +331,11 @@ namespace DotaLocalizerManager
             string value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null) ? "" : dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
             int fileId = (e.ColumnIndex == firstFile) ? firstFile : secondFile;
 
-            if (db.FileOpener.Files[fileId].LocalizeString[key] == value)
-                return;
-
-            db.FileOpener.Files[fileId].LocalizeString[key] = value;
-            db.Edited = true;
+            if (db.FileOpener.Files[fileId].LocalizationKeys.FindChildren(key).Value != value)
+            {
+                db.FileOpener.Files[fileId].LocalizationKeys.FindChildren(key).Value = value;
+                db.Edited = true;
+            }
 
             editing = false;
         }
@@ -336,6 +345,14 @@ namespace DotaLocalizerManager
             e.Cancel = exit();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opFile = new OpenFileDialog();
+            opFile.ShowDialog();
+            string path = opFile.FileName;
+            string fileText = System.IO.File.ReadAllText(path);
+            List<KeyValue> keys = (List<KeyValue>) KVParser.Parse(fileText);
+            string str = keys[0].ToString();
+        }
     }
 }

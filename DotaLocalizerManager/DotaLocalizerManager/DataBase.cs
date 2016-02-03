@@ -2,7 +2,7 @@
 {
     public class DataBase
     {
-        public FileOpener FileOpener;
+        public LocalizationFilesOpener FileOpener;
 
         public string NewFormName;
         private const string ProgrammName = "Localizer - ";

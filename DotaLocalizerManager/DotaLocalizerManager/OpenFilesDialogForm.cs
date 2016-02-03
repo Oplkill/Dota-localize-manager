@@ -93,9 +93,9 @@ namespace DotaLocalizerManager
             }
         }
 
-        public static FileOpener ShowAndGet()
+        public static LocalizationFilesOpener ShowAndGet()
         {
-            FileOpener fileOpener = new FileOpener();
+            LocalizationFilesOpener fileOpener = new LocalizationFilesOpener();
 
             OpenFilesDialogForm dialog = new OpenFilesDialogForm();
             dialog.ShowDialog();

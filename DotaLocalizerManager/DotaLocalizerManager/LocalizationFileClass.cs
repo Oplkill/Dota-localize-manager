@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using KV3Lib;
 
 namespace DotaLocalizerManager
 {
-    public class FileClass
+    public class LocalizationFileClass
     {
         public bool Locked;
         public string FilePathName;
         public string Language;
-        public Dictionary<string, string> LocalizeString = new Dictionary<string, string>();
+        public KeyValue Keys;
+        public KeyValue LocalizationKeys;
     }
 }
