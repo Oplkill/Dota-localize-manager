@@ -3,6 +3,7 @@
     public class DataBase
     {
         public LocalizationFilesOpener FileOpener;
+        public HeroFileOpener HeroFileOpener;
 
         public string NewFormName;
         private const string ProgrammName = "Localizer - ";

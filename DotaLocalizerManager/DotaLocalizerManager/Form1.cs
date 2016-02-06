@@ -40,6 +40,28 @@ namespace DotaLocalizerManager
             loading = false;
         }
 
+        /// <summary>
+        /// Import heroes
+        /// </summary>
+        private void heroesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loading = true;
+
+            db.HeroFileOpener = new HeroFileOpener();
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                db.HeroFileOpener.LoadFile(openFileDialog1.FileName);
+                var locFile = db.FileOpener.Files[0];
+                db.HeroFileOpener.LocalizateHeroes(ref locFile);
+                db.FileOpener.CompareAllFiles();
+                loadTable();
+            }
+
+            loading = false;
+        }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (db == null)
@@ -246,6 +268,7 @@ namespace DotaLocalizerManager
 
         private void loadTable()
         {
+            dataGridView1.Rows.Clear();
             foreach (var kv in db.FileOpener.Files[firstFile].LocalizationKeys.Children)
             {
                 var dtGrigTmp = new DataGridViewRow();
@@ -354,5 +377,7 @@ namespace DotaLocalizerManager
             List<KeyValue> keys = (List<KeyValue>) KVParser.Parse(fileText);
             string str = keys[0].ToString();
         }
+
+        
     }
 }
