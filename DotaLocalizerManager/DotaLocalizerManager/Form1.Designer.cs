@@ -38,6 +38,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heroesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
@@ -52,8 +53,8 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.heroesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.abilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -139,10 +140,18 @@
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.heroesToolStripMenuItem});
+            this.heroesToolStripMenuItem,
+            this.abilitiesToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.importToolStripMenuItem.Text = "Import";
+            // 
+            // heroesToolStripMenuItem
+            // 
+            this.heroesToolStripMenuItem.Name = "heroesToolStripMenuItem";
+            this.heroesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.heroesToolStripMenuItem.Text = "Heroes";
+            this.heroesToolStripMenuItem.Click += new System.EventHandler(this.heroesToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -301,16 +310,16 @@
             this.Column3.Name = "Column3";
             this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // heroesToolStripMenuItem
-            // 
-            this.heroesToolStripMenuItem.Name = "heroesToolStripMenuItem";
-            this.heroesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.heroesToolStripMenuItem.Text = "Heroes";
-            this.heroesToolStripMenuItem.Click += new System.EventHandler(this.heroesToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // abilitiesToolStripMenuItem
+            // 
+            this.abilitiesToolStripMenuItem.Name = "abilitiesToolStripMenuItem";
+            this.abilitiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abilitiesToolStripMenuItem.Text = "Abilities";
+            this.abilitiesToolStripMenuItem.Click += new System.EventHandler(this.abilitiesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -364,6 +373,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem heroesToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem abilitiesToolStripMenuItem;
     }
 }
 

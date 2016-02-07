@@ -14,10 +14,10 @@ namespace DotaLocalizerManager
 
             List<KeyValue> keys = KVParser.Parse(fileText);
 
-            parse(fileText, keys[0]);
+            parse(keys[0]);
         }
 
-        private void parse(string code, KeyValue heroeKeyValues)
+        private void parse(KeyValue heroeKeyValues)
         {
             foreach (var kv in heroeKeyValues.Children)
             {

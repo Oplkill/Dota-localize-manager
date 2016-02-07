@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilityClass.cs" />
+    <Compile Include="AbilityFileOpener.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="HeroClass.cs" />
     <Compile Include="HeroFileOpener.cs" />

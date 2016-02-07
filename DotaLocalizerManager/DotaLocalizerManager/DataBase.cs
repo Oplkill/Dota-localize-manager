@@ -4,6 +4,7 @@
     {
         public LocalizationFilesOpener FileOpener;
         public HeroFileOpener HeroFileOpener;
+        public AbilityFileOpener AbilityFileOpener;
 
         public string NewFormName;
         private const string ProgrammName = "Localizer - ";

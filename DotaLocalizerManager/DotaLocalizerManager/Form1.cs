@@ -57,6 +57,30 @@ namespace DotaLocalizerManager
                 db.HeroFileOpener.LocalizateHeroes(ref locFile);
                 db.FileOpener.CompareAllFiles();
                 loadTable();
+                db.Edited = true;
+            }
+
+            loading = false;
+        }
+
+        /// <summary>
+        /// Inport abilities
+        /// </summary>
+        private void abilitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loading = true;
+
+            db.AbilityFileOpener = new AbilityFileOpener();
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                db.AbilityFileOpener.LoadFile(openFileDialog1.FileName);
+                var locFile = db.FileOpener.Files[0];
+                db.AbilityFileOpener.LocalizateAbilities(ref locFile);
+                db.FileOpener.CompareAllFiles();
+                loadTable();
+                db.Edited = true;
             }
 
             loading = false;
@@ -377,7 +401,5 @@ namespace DotaLocalizerManager
             List<KeyValue> keys = (List<KeyValue>) KVParser.Parse(fileText);
             string str = keys[0].ToString();
         }
-
-        
     }
 }
