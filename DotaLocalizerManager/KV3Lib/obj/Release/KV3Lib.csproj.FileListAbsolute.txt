@@ -1,0 +1,4 @@
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\bin\Release\KV3Lib.dll
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\bin\Release\KV3Lib.pdb
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\obj\Release\KV3Lib.dll
+C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\obj\Release\KV3Lib.pdb

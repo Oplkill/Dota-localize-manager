@@ -1,5 +1,4 @@
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\bin\Debug\KV3Lib.dll
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\bin\Debug\KV3Lib.pdb
-C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\obj\Debug\KV3Lib.csprojResolveAssemblyReference.cache
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\obj\Debug\KV3Lib.dll
 C:\Users\Oplkill\Documents\Dota-localize-manager\DotaLocalizerManager\KV3Lib\obj\Debug\KV3Lib.pdb
